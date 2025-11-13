@@ -1,45 +1,47 @@
 package module1.PR4
 
-enum class Directions{
-    Up, Down, Left, Right
+
+enum class Direction {
+    UP, DOWN, LEFT, RIGHT
 }
 
-class Robot (var x: Int, var y: Int, var direction: Directions){
-    public fun turnLeft(){
-        direction = when (direction){
-            Directions.Up -> Directions.Left
-            Directions.Left -> Directions.Down
-            Directions.Down -> Directions.Right
-            Directions.Right -> Directions.Up
+class Robot(var x: Int, var y: Int, var direction: Direction) {
+
+    fun turnLeft() {
+        direction = when (direction) {
+            Direction.UP -> Direction.LEFT
+            Direction.LEFT -> Direction.DOWN
+            Direction.DOWN -> Direction.RIGHT
+            Direction.RIGHT -> Direction.UP
         }
     }
 
-    public fun turnRight (){
-        direction = when (direction){
-            Directions.Up -> Directions.Right
-            Directions.Right -> Directions.Down
-            Directions.Down -> Directions.Left
-            Directions.Left -> Directions.Up
+    fun turnRight() {
+        direction = when (direction) {
+            Direction.UP -> Direction.RIGHT
+            Direction.RIGHT -> Direction.DOWN
+            Direction.DOWN -> Direction.LEFT
+            Direction.LEFT -> Direction.UP
         }
     }
 
-    public fun stepForward (){
-        when (direction){
-            Directions.Up -> y++
-            Directions.Down -> y--
-            Directions.Right -> x++
-            Directions.Left -> x--
+    fun stepForward() {
+        when (direction) {
+            Direction.UP -> y++
+            Direction.DOWN -> y--
+            Direction.RIGHT -> x++
+            Direction.LEFT -> x--
         }
     }
 
-    override fun toString () : String = "x: $x, y: $y, dir: $direction"
+    override fun toString(): String = "x: $x, y: $y, dir: $direction"
 }
 
-fun main(){
-    val robot: Robot = Robot (0, 0, Directions.Up)
-    println(robot)
+fun main() {
+    val robot = Robot(0, 0, Direction.UP)
+    println(robot) // x: 0, y: 0, dir: UP
 
     robot.turnRight()
     robot.stepForward()
-    println(robot)
+    println(robot) // x: 1, y: 0, dir: RIGHT
 }
